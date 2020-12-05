@@ -1,10 +1,12 @@
 import { MouseTracker } from "./MouseTracker";
 import { Canvas } from "./Canvas";
 import { Entity } from "./Entity";
+import { Vec2 } from "./math/Vec2";
 
 interface IData {
   canvas: HTMLCanvasElement;
   mouse: MouseTracker;
+  entities: Entity[];
 }
 
 interface IVec2 {
@@ -13,7 +15,8 @@ interface IVec2 {
 }
 
 interface IEntityOptions {
-  pos: IVec2;
+  x: number;
+  y: number;
   radius: number;
   width: number;
   height: number;

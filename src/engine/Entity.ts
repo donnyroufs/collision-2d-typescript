@@ -9,13 +9,14 @@ export class Entity {
   public color: string;
 
   constructor({
-    pos = new Vec2(30, 30),
+    x = 0,
+    y = 0,
     radius,
     width,
     height,
     color = "black",
   }: Partial<IEntityOptions>) {
-    this.pos = pos;
+    this.pos = new Vec2(x, y);
     this.radius = radius;
     this.width = width;
     this.height = height;

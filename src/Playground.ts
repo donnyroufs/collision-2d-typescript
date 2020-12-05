@@ -6,16 +6,35 @@ class Circle extends Entity {
   }
 }
 
+class StaticCircle extends Entity {
+  public update(data: IData, delta: number) {}
+}
+
 export class Playground extends Canvas {
-  setup({ mouse }: IData) {
+  setup({ mouse, canvas }: IData) {
     this.addEntity(
-      new Circle({
-        pos: {
-          x: mouse.pos.x,
-          y: mouse.pos.y,
-        },
+      new StaticCircle({
+        x: canvas.width / 2,
+        y: canvas.height / 2,
         radius: 10,
       })
     );
+    this.addEntity(
+      new Circle({
+        x: mouse.pos.x,
+        y: mouse.pos.y,
+        radius: 10,
+        color: "purple",
+      })
+    );
+  }
+
+  beforeUpdate({}: IData, delta: number) {
+    console.log({ delta });
+  }
+
+  afterUpdate({ entities }: IData, delta: number) {
+    const [, movingEntity] = entities;
+    console.log(movingEntity.pos);
   }
 }

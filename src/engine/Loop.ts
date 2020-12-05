@@ -1,11 +1,14 @@
 import { DeltaTracker } from "./DeltaTracker";
 
+type RenderFn = () => void;
+type UpdateFn = (delta: number) => void;
 export class Loop {
-  private updateFunction: (delta: number) => void;
   private deltaTracker: DeltaTracker;
 
-  constructor(updateFunction: (delta: number) => void) {
-    this.updateFunction = updateFunction;
+  constructor(
+    private updateFunction: UpdateFn,
+    private renderFunction: RenderFn
+  ) {
     this.deltaTracker = new DeltaTracker();
   }
 
@@ -17,6 +20,7 @@ export class Loop {
     const delta = this.deltaTracker.getAndUpdateDelta();
 
     this.updateFunction(delta);
+    this.renderFunction();
 
     window.requestAnimationFrame(this.loop.bind(this));
   }
