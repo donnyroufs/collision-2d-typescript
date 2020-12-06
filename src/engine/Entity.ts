@@ -29,8 +29,8 @@ export class Entity {
 
   public render(ctx: CanvasRenderingContext2D) {
     if (this.height && this.width) {
-      ctx.fillStyle = this.color;
       ctx.fillRect(this.pos.x, this.pos.y, this.width, this.height);
+      ctx.fillStyle = this.color;
       ctx.fill();
     }
 
