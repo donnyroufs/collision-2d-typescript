@@ -1,3 +1,4 @@
+import { RectToRect } from "./RectToRect";
 import { PointToRect } from "./PointToRect";
 
-export { PointToRect };
+export { PointToRect, RectToRect };

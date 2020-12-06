@@ -5,7 +5,7 @@ import {
   PointToCircle,
   CircleToCircle,
 } from "./section-one/index";
-import { PointToRect } from "./section-two/index";
+import { PointToRect, RectToRect } from "./section-two/index";
 
 async function bootstrap() {
   const canvasEl = document.querySelector("canvas") as HTMLCanvasElement;
@@ -18,7 +18,8 @@ async function bootstrap() {
   // const canvas = new PointToCircle(canvasEl, 600, 400, mouse);
   // const canvas = new CircleToCircle(canvasEl, 600, 400, mouse);
 
-  const canvas = new PointToRect(canvasEl, 600, 400, mouse);
+  // const canvas = new PointToRect(canvasEl, 600, 400, mouse);
+  const canvas = new RectToRect(canvasEl, 600, 400, mouse);
 
   canvasEl.focus();
   canvas.run();

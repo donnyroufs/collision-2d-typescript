@@ -1,5 +1,5 @@
-import { Canvas, Entity, IData } from "./engine/index";
-import { Vec2 } from "./engine/math/Vec2";
+import { Canvas, Entity, IData } from "../engine/index";
+import { Vec2 } from "../engine/math/Vec2";
 
 class Square extends Entity {
   public update(data: IData, delta: number) {
@@ -11,7 +11,7 @@ class StaticSquare extends Entity {
   public update(data: IData, delta: number) {}
 }
 
-export class Playground extends Canvas {
+export class RectToRect extends Canvas {
   setup({ mouse, canvas }: IData) {
     this.addEntity(
       new Square({
