@@ -29,14 +29,6 @@ export class Playground extends Canvas {
     );
   }
 
-  beforeUpdate({ entities, canvas }: IData, delta: number) {
-    const [entityA, entityB] = entities;
-    entityA.color = this.isColliding(entityA, entityB) ? "orange" : "black";
-  }
-
-  private isColliding(entityA, entityB) {
-    const distance = entityA.pos.dist(entityB.pos);
-    const radiusSum = entityA.radius + entityB.radius;
-    return distance < radiusSum;
-  }
+  beforeUpdate({}: IData, delta: number) {}
+  afterUpdate({}: IData, delta: number) {}
 }
