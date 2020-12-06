@@ -24,13 +24,14 @@ export class Entity {
   }
 
   public update({ mouse }: IData, delta: number) {
-    this.pos.x = mouse.pos.x;
-    this.pos.y = mouse.pos.y;
+    this.pos.add(mouse.pos);
   }
 
   public render(ctx: CanvasRenderingContext2D) {
     if (this.height && this.width) {
+      ctx.fillStyle = this.color;
       ctx.fillRect(this.pos.x, this.pos.y, this.width, this.height);
+      ctx.fill();
     }
 
     if (this.radius) {

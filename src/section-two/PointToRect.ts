@@ -1,4 +1,4 @@
-import { Canvas, Entity, IData } from "./engine/index";
+import { Canvas, Entity, IData } from "../engine/index";
 
 class Circle extends Entity {
   public update(data: IData, delta: number) {
@@ -10,7 +10,7 @@ class StaticSquare extends Entity {
   public update(data: IData, delta: number) {}
 }
 
-export class Playground extends Canvas {
+export class PointToRect extends Canvas {
   setup({ mouse, canvas }: IData) {
     this.addEntity(
       new StaticSquare({
