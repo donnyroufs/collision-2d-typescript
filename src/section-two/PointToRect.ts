@@ -1,5 +1,9 @@
 import { Canvas, Entity, IData } from "../engine/index";
 
+// Is the X position of the point to the RIGHT of the LEFT EDGE?
+// Is the X position of the point to the LEFT of the RIGHT EDGE?
+// Is the Y position of the point BELOW the TOP EDGE?
+// Is the Y position of the point ABOVE the BOTTOM EDGE?
 class Circle extends Entity {
   public update(data: IData, delta: number) {
     super.update(data, delta);

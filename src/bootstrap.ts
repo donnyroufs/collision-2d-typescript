@@ -1,3 +1,4 @@
+import { CircleToRect } from "./section-two/CircleToRect";
 import { MouseTracker } from "./engine/MouseTracker";
 import { Playground } from "./Playground";
 import {
@@ -20,6 +21,7 @@ async function bootstrap() {
 
   // const canvas = new PointToRect(canvasEl, 600, 400, mouse);
   // const canvas = new RectToRect(canvasEl, 600, 400, mouse);
+  // const canvas = new CircleToRect(canvasEl, 600, 400, mouse);
 
   canvasEl.focus();
   canvas.run();

@@ -1,10 +1,12 @@
 import { Canvas, Entity, IData } from "../engine/index";
+import { Vec2 } from "../engine/math/Vec2";
 
-// Is the RIGHT edge of r1 to the RIGHT of the LEFT edge of r2?
-// Is the LEFT edge of r1 to the LEFT of the RIGHT edge of r2?
-// Is the BOTTOM edge of r1 BELOW the TOP edge of r2?
-// Is the TOP edge of r1 ABOVE the BOTTOM edge of r2?
-class Square extends Entity {
+// If the circle is to the RIGHT of the square, check against the RIGHT edge.
+// If the circle is to the LEFT of the square, check against the LEFT edge.
+// If the circle is ABOVE the square, check against the TOP edge.
+// If the circle is to the BELOW the square, check against the BOTTOM edge.
+
+class circle extends Entity {
   public update(data: IData, delta: number) {
     super.update(data, delta);
   }
@@ -14,14 +16,13 @@ class StaticSquare extends Entity {
   public update(data: IData, delta: number) {}
 }
 
-export class RectToRect extends Canvas {
+export class CircleToRect extends Canvas {
   setup({ mouse, canvas }: IData) {
     this.addEntity(
-      new Square({
-        x: mouse.pos.x + 30,
-        y: mouse.pos.y - 30,
-        height: 30,
-        width: 30,
+      new circle({
+        x: mouse.pos.x,
+        y: mouse.pos.y,
+        radius: 10,
         color: "purple",
       })
     );
@@ -36,8 +37,34 @@ export class RectToRect extends Canvas {
   }
 
   beforeUpdate({ entities }: IData, delta: number) {
-    const [r1, r2] = entities;
-    r2.color = this.isCollidingWithAnotherRect(r1, r2) ? "orange" : "black";
+    const [c, r] = entities;
+    r.color = this.circleCollidesWithRect(c, r) ? "orange" : "black";
+  }
+
+  private circleCollidesWithRect(c: Entity, r: Entity) {
+    const test = new Vec2(c.pos.x, c.pos.y);
+
+    // left else right
+    if (c.pos.x < r.pos.x) {
+      test.x = r.pos.x;
+    } else if (c.pos.x > r.pos.x + r.width) {
+      test.x = r.pos.x + r.width;
+    }
+
+    // top else bottom
+    if (c.pos.y < r.pos.y) {
+      test.y = r.pos.y;
+    } else if (c.pos.y > r.pos.y + r.height) {
+      test.y = r.pos.y + r.height;
+    }
+
+    const distance = c.pos.dist(test);
+
+    if (distance <= c.radius) {
+      return true;
+    }
+
+    return false;
   }
 
   private isCollidingWithAnotherRect(r1: Entity, r2: Entity) {
