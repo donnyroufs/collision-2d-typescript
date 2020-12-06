@@ -1,4 +1,4 @@
-import { Canvas, Entity, IData } from "./engine/index";
+import { Canvas, Entity, IData } from "../engine/index";
 
 class Circle extends Entity {
   public update(data: IData, delta: number) {
@@ -10,7 +10,7 @@ class StaticCircle extends Entity {
   public update(data: IData, delta: number) {}
 }
 
-export class Playground extends Canvas {
+export class PointToCircle extends Canvas {
   setup({ mouse, canvas }: IData) {
     this.addEntity(
       new StaticCircle({
@@ -31,12 +31,8 @@ export class Playground extends Canvas {
 
   beforeUpdate({ entities, canvas }: IData, delta: number) {
     const [entityA, entityB] = entities;
-    entityA.color = this.isColliding(entityA, entityB) ? "orange" : "black";
-  }
-
-  private isColliding(entityA, entityB) {
     const distance = entityA.pos.dist(entityB.pos);
-    const radiusSum = entityA.radius + entityB.radius;
-    return distance < radiusSum;
+
+    canvas.style.background = distance < entityA.radius ? "green" : "white";
   }
 }
