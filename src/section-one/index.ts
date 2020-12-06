@@ -1,3 +1,4 @@
 import { PointToPoint } from "./PointToPoint";
+import { PointToCircle } from "./PointToCircle";
 
-export { PointToPoint };
+export { PointToPoint, PointToCircle };

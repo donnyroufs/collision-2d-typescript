@@ -9,10 +9,8 @@ export class MouseTracker {
     this.pos.y = y || canvasElement.height;
 
     canvasElement.addEventListener("mousemove", (e) => {
-      const { x, y } = Utils.getMousePos(canvasElement, e);
-
-      this.pos.x = x;
-      this.pos.y = y;
+      const mousePos = Utils.getMousePos(canvasElement, e);
+      this.pos.add(mousePos);
     });
   }
 }
